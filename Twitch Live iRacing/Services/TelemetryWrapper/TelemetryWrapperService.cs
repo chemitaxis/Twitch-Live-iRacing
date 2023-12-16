@@ -33,7 +33,9 @@ namespace Twitch_Live_iRacing.Services.TelemetryWrapper
             wrapper.EventRaiseType = SdkWrapper.EventRaiseTypes.CurrentThread;
 
             // Only update telemetry 10 times per second
-            wrapper.TelemetryUpdateFrequency = 10;
+            //wrapper.TelemetryUpdateFrequency = 10;
+
+            wrapper.TelemetryUpdateFrequency = 0.2;
 
             wrapper.Connected += TelemetryWrapperConnected;
             wrapper.Disconnected += TelemetryWrapperDisconnected;
@@ -64,7 +66,7 @@ namespace Twitch_Live_iRacing.Services.TelemetryWrapper
         private void TelemetryWrapperConnected(object? sender, EventArgs e)
         {
             logService.Log("Connected to iRacing");
-            throw new NotImplementedException();
+          
         }
 
         private void TelemetryWrapperSessionInfoUpdated(object? sender, SessionInfoUpdatedEventArgs e)
