@@ -12,7 +12,8 @@ namespace Twitch_Live_iRacing.Services.TelemetryWrapper
         public string? SerieName { get; set; }
         public string? StrengthOfField { get; set; }
         public string? SessionType { get; set; }
-        public string? Car { get; set; }
+        public string? TrackName { get; set; }
+
         // Add other properties as needed
     }
 }

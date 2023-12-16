@@ -3,6 +3,7 @@ using System.Text;
 using Twitch_Live_iRacing.Services.Logger;
 using Twitch_Live_iRacing.Services.Storage;
 using Twitch_Live_iRacing.Services.TelemetryWrapper;
+using Twitch_Live_iRacing.Utils;
 
 namespace Twitch_Live_iRacing.Services.Twitch
 {
@@ -12,12 +13,14 @@ namespace Twitch_Live_iRacing.Services.Twitch
         private readonly ILogService logService;
         private readonly IStorageService storageService;
         private readonly ITelemetryWrapperService iRacingWrapperService;
+        
 
         public TwitchService(ILogService logService, IStorageService storageService, ITelemetryWrapperService sdkWrapperService)
         {
             this.logService = logService;
             this.storageService = storageService;
             this.iRacingWrapperService = sdkWrapperService;
+            
         }
 
         private void OnSdkDataChanged(object sender, SdkDataEventArgs e)
@@ -48,7 +51,7 @@ namespace Twitch_Live_iRacing.Services.Twitch
                 broadcasterId = await FetchAndStoreBroadcasterId(token, clientId);
             }
             // Format the new title using the SdkData properties
-            var newTitle = $"{data.SerieName} - {data.StrengthOfField} - {data.SessionType} - {data.Car}";
+            var newTitle = $"{data.SerieName} - {data.TrackName} - {data.SessionType}";
 
             // Update the channel's title
             await UpdateChannelTitle(token, channelName, broadcasterId, newTitle);

@@ -5,8 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Twitch_Live_iRacing.Services.Logger;
-
-
+using Twitch_Live_iRacing.Utils;
 using static iRacingSdkWrapper.SdkWrapper;
 
 
@@ -15,15 +14,17 @@ namespace Twitch_Live_iRacing.Services.TelemetryWrapper
     public class TelemetryWrapperService : ITelemetryWrapperService
     {
         private readonly ILogService logService;
+        private readonly ISeriesConversor seriesConversor;
         private SdkWrapper wrapper;
         private SdkData lastSdkData = new SdkData();
         public event EventHandler<SdkDataEventArgs> DataChanged = delegate { };
 
         // Event declarations...
 
-        public TelemetryWrapperService(ILogService logService)
+        public TelemetryWrapperService(ILogService logService, ISeriesConversor seriesConversor)
         {
             this.logService = logService;
+            this.seriesConversor = seriesConversor;
             
             // Configuration of the wrapper...
             wrapper = new SdkWrapper();
@@ -87,11 +88,35 @@ namespace Twitch_Live_iRacing.Services.TelemetryWrapper
 
             var data = new SdkData();
 
-            data.Car = e.SessionInfo.GetValue("");
-            data.StrengthOfField = e.SessionInfo.GetValue("");
-            data.SerieName = e.SessionInfo.GetValue("");
-            data.SessionType = e.SessionInfo.GetValue("");
+            data.SessionType = e.SessionInfo["WeekendInfo"]["EventType"].GetValue(); 
+            data.SerieName = convertToNameSerieId(e.SessionInfo["WeekendInfo"]["SeriesID"].GetValue());
+            data.TrackName = e.SessionInfo["WeekendInfo"]["TrackDisplayName"].GetValue();
+            data.StrengthOfField = getStrenghtOfField(e.SessionInfo);
             return data;
+        }
+
+        private string? getStrenghtOfField(SessionInfo sessionInfo)
+        {
+            var sof = 0;
+            var drivers = 0;
+            for (var id = 0; id < 60; id++)
+            {
+                string? irating;
+                if (sessionInfo["DriverInfo"]["Drivers"]["CarIdx", id]["IRating"].TryGetValue(out irating))
+                {
+                    // Success
+                    drivers++;
+                    sof += Int16.Parse(irating);
+                }
+            }
+
+
+            return (sof / drivers).ToString();
+        }
+
+        private string? convertToNameSerieId(string id)
+        {
+            return this.seriesConversor.ConvertFromIdToName(id);
         }
     }
 }
