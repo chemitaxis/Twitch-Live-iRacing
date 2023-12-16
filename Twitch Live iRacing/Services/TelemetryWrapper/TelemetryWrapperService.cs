@@ -38,10 +38,22 @@ namespace Twitch_Live_iRacing.Services.TelemetryWrapper
             wrapper.Connected += TelemetryWrapperConnected;
             wrapper.Disconnected += TelemetryWrapperDisconnected;
             wrapper.SessionInfoUpdated += TelemetryWrapperSessionInfoUpdated;
+
+           
         }
 
+        public void StartListeningTelemetry()
+        {
+            wrapper.Start();
+            logService.Log("Started to listen telemtry...");
+        }
 
-        
+        public void StopListeningTelemetry()
+        {
+            wrapper.Stop();
+            logService.Log("Stop to listen telemtry...");
+        }
+
 
         private void TelemetryWrapperDisconnected(object? sender, EventArgs e)
         {

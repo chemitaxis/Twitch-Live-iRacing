@@ -2,7 +2,7 @@
 {
     public class LogEventArgs
     {
-        private string message;
+        public string message;
 
         public LogEventArgs(string message)
         {
