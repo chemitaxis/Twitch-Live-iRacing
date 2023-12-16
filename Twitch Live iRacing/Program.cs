@@ -1,3 +1,9 @@
+
+using Twitch_Live_iRacing.Services.Logger;
+using Twitch_Live_iRacing.Services.Storage;
+using Twitch_Live_iRacing.Services.TelemetryWrapper;
+using Twitch_Live_iRacing.Services.Twitch;
+
 namespace Twitch_Live_iRacing
 {
     internal static class Program
@@ -11,7 +17,16 @@ namespace Twitch_Live_iRacing
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+
+            ILogService logService = new LogService();
+            IStorageService storageService = new AppSettingsStorageService();
+            ITelemetryWrapperService telemtryWrapperService = new TelemetryWrapperService(logService);
+            ITwitchService twitchService = new TwitchService(logService, storageService, telemtryWrapperService);
+
+            var mainForm = new Form1(logService, storageService,telemtryWrapperService, twitchService );
+
+
+            Application.Run(mainForm);
         }
     }
 }

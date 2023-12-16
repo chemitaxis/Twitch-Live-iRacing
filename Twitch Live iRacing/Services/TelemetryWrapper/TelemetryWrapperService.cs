@@ -8,11 +8,11 @@ using Twitch_Live_iRacing.Services.Logger;
 
 
 using static iRacingSdkWrapper.SdkWrapper;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace Twitch_Live_iRacing.Services.iRacingWrapper
+
+namespace Twitch_Live_iRacing.Services.TelemetryWrapper
 {
-    internal class iRacingWrapperService :IiRacingWrapperService
+    public class TelemetryWrapperService : ITelemetryWrapperService
     {
         private readonly ILogService logService;
         private SdkWrapper wrapper;
@@ -21,7 +21,7 @@ namespace Twitch_Live_iRacing.Services.iRacingWrapper
 
         // Event declarations...
 
-        public iRacingWrapperService(ILogService logService)
+        public TelemetryWrapperService(ILogService logService)
         {
             this.logService = logService;
             
@@ -35,27 +35,27 @@ namespace Twitch_Live_iRacing.Services.iRacingWrapper
             // Only update telemetry 10 times per second
             wrapper.TelemetryUpdateFrequency = 10;
 
-            wrapper.Connected += Wrapper_Connected;
-            wrapper.Disconnected += Wrapper_Connected;
-            wrapper.SessionInfoUpdated += Wrapper_SessionInfoUpdated;
+            wrapper.Connected += TelemetryWrapperConnected;
+            wrapper.Disconnected += TelemetryWrapperDisconnected;
+            wrapper.SessionInfoUpdated += TelemetryWrapperSessionInfoUpdated;
         }
 
 
         
 
-        private void Wrapper_Disconnected(object? sender, EventArgs e)
+        private void TelemetryWrapperDisconnected(object? sender, EventArgs e)
         {
 
             logService.Log("Disconnected from iRacing");
         }
 
-        private void Wrapper_Connected(object? sender, EventArgs e)
+        private void TelemetryWrapperConnected(object? sender, EventArgs e)
         {
             logService.Log("Connected to iRacing");
             throw new NotImplementedException();
         }
 
-        private void Wrapper_SessionInfoUpdated(object? sender, SessionInfoUpdatedEventArgs e)
+        private void TelemetryWrapperSessionInfoUpdated(object? sender, SessionInfoUpdatedEventArgs e)
         {
             logService.Log("Updated info session from iRacing");
             var newData = ConvertToSdkData(e); // Convert or map the event args to your data model

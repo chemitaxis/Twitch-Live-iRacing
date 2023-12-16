@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Twitch_Live_iRacing.Services.iRacingWrapper
+namespace Twitch_Live_iRacing.Services.TelemetryWrapper
 {
     public class SdkDataEventArgs : EventArgs
     {
