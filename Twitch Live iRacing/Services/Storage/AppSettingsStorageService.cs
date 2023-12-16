@@ -11,7 +11,7 @@ namespace Twitch_Live_iRacing.Services.Storage
 {
     public class AppSettingsStorageService : IStorageService
     {
-        public static void SaveSetting(string key, string value)
+        public void SaveSetting(string key, string value)
         {
             
             Settings.Default[key] = value;

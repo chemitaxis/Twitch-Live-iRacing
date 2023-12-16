@@ -12,11 +12,11 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Twitch_Live_iRacing.Services.iRacingWrapper
 {
-    internal class iRacingWrapperService
+    internal class iRacingWrapperService :IiRacingWrapperService
     {
         private readonly ILogService logService;
         private SdkWrapper wrapper;
-        private SdkData lastSdkData;
+        private SdkData lastSdkData = new SdkData();
         public event EventHandler<SdkDataEventArgs> DataChanged = delegate { };
 
         // Event declarations...
