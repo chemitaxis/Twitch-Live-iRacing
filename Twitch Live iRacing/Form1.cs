@@ -36,7 +36,11 @@ namespace Twitch_Live_iRacing
             
             this.logService.LogUpdated += LogService_LogUpdated;
             telemetryWrapperService.StartListeningTelemetry();
+
+            this.telemetryWrapperService.DataChanged += this.twitchService.OnSdkDataChanged;
         }
+
+       
 
         private void LogService_LogUpdated(object sender, LogEventArgs e)
         {

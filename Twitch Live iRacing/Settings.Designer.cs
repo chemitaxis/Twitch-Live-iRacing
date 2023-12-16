@@ -22,5 +22,41 @@ namespace Twitch_Live_iRacing {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string TwitchToken {
+            get {
+                return ((string)(this["TwitchToken"]));
+            }
+            set {
+                this["TwitchToken"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string TwitchClientId {
+            get {
+                return ((string)(this["TwitchClientId"]));
+            }
+            set {
+                this["TwitchClientId"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string TwitchChannelName {
+            get {
+                return ((string)(this["TwitchChannelName"]));
+            }
+            set {
+                this["TwitchChannelName"] = value;
+            }
+        }
     }
 }

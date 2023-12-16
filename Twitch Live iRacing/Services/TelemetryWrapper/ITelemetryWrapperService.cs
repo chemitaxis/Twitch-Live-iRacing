@@ -4,5 +4,7 @@
     {
         void StartListeningTelemetry();
         void StopListeningTelemetry();
+
+        event EventHandler<SdkDataEventArgs> DataChanged;
     }
 }

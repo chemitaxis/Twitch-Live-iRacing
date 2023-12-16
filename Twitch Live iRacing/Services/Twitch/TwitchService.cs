@@ -23,7 +23,7 @@ namespace Twitch_Live_iRacing.Services.Twitch
             
         }
 
-        private void OnSdkDataChanged(object sender, SdkDataEventArgs e)
+        public void  OnSdkDataChanged(object sender, SdkDataEventArgs e)
         {
             // Logic to call the Twitch API
             UpdateTwitchAPIAsync(e.Data);
