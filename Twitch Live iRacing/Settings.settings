@@ -6,13 +6,10 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="TwitchClientId" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">gp762nuuoqcoxypju8c569th9wz7q5</Value>
     </Setting>
     <Setting Name="TwitchChannelName" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="StartApplication" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="StartMinified" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -22,6 +19,9 @@
     </Setting>
     <Setting Name="EnableLogs" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="BroadcasterId" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

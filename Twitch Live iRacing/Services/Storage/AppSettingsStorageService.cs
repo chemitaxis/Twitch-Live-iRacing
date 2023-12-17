@@ -40,5 +40,10 @@ namespace Twitch_Live_iRacing.Services.Storage
         {
             return Settings.Default[key]?.ToString();
         }
+
+        public bool LoadSettingBool(string key)
+        {
+            return Boolean.Parse(Settings.Default[key]?.ToString());
+        }
     }
 }

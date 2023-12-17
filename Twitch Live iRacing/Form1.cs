@@ -28,20 +28,34 @@ namespace Twitch_Live_iRacing
 
             InputClientIdTwitch.UseSystemPasswordChar = true;
             InputTokenTwitch.UseSystemPasswordChar = true;
-
-
             trayIconService = new TrayIconService(this);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            this.logService.LogUpdated += LogService_LogUpdated;
-            telemetryWrapperService.StartListeningTelemetry();
+            this.logService.LogUpdated += LogService_LogUpdated;           
 
             this.telemetryWrapperService.DataChanged += this.twitchService.OnSdkDataChanged;
 
+            
+
             this.addLinksToLabel();
+
+            this.loadInitialDataAndSettings();
+
+            logService.Log("Application started... waiting to iRacing");
+
+        }
+
+        private void loadInitialDataAndSettings()
+        {
+            CheckBoxEnabledLogs.Checked = storageService.LoadSettingBool("EnableLogs");
+            CheckBoxStartWithWindows.Checked = storageService.LoadSettingBool("StartWithWindows");
+            CheckBoxStartMinified.Checked =storageService.LoadSettingBool("StartMinified");
+            InputTokenTwitch.Text = storageService.LoadSetting("TwitchToken");
+            InputClientIdTwitch.Text = storageService.LoadSetting("TwitchClientId");
+            InputChannelNameTwitch.Text = storageService.LoadSetting("TwitchChannelName");
 
         }
 
@@ -81,13 +95,15 @@ namespace Twitch_Live_iRacing
             }
 
             // Update the log text box
-            Debug.WriteLine(e.message);
 
-            InputLogs.AppendText(e.message + Environment.NewLine);
+            if (storageService.LoadSettingBool("EnableLogs")) { 
 
-            // Optionally, scroll to the bottom of the TextBox
-            InputLogs.SelectionStart = InputLogs.Text.Length;
-            InputLogs.ScrollToCaret();
+                InputLogs.AppendText(e.message + Environment.NewLine);
+
+                // Optionally, scroll to the bottom of the TextBox
+                InputLogs.SelectionStart = InputLogs.Text.Length;
+                InputLogs.ScrollToCaret();
+            }
 
         }
 
@@ -117,12 +133,28 @@ namespace Twitch_Live_iRacing
 
         private void CheckBoxEnabledLogs_CheckedChanged(object sender, EventArgs e)
         {
+            
             storageService.SaveSetting("EnableLogs", CheckBoxEnabledLogs.Checked);
         }
 
         private void CheckBoxStartWithWindows_CheckedChanged(object sender, EventArgs e)
         {
+
+            var registryKey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey
+                      ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+
+            if (CheckBoxStartWithWindows.Checked)
+            {
+                registryKey.SetValue("TwitchLiveIRacing", Application.ExecutablePath);
+            }
+            else
+            {
+                registryKey.DeleteValue("TwitchLiveIRacing", false);
+            }
+
             storageService.SaveSetting("StartWithWindows", CheckBoxStartWithWindows.Checked);
+
+
         }
 
         private void CheckBoxStartMinified_CheckedChanged(object sender, EventArgs e)
@@ -130,17 +162,6 @@ namespace Twitch_Live_iRacing
             storageService.SaveSetting("StartMinified", CheckBoxStartMinified.Checked);
         }
 
-        private void CheckBoxStartApplication_CheckedChanged(object sender, EventArgs e)
-        {
-            storageService.SaveSetting("StartApplication", CheckBoxStartApplication.Checked);
-            if (CheckBoxStartApplication.Checked)
-            {
-                logService.Log("Application is listening to iRacing changes...");
-            }
-            else { 
-                logService.Log("Application is not listening to iRacing changes..."); 
-            }
-        }
 
         private void ButtonSaveChannelName_Click(object sender, EventArgs e)
         {

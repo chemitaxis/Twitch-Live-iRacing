@@ -46,7 +46,6 @@
             InputLogs = new TextBox();
             groupBox3 = new GroupBox();
             CheckBoxEnabledLogs = new CheckBox();
-            CheckBoxStartApplication = new CheckBox();
             CheckBoxStartMinified = new CheckBox();
             CheckBoxStartWithWindows = new CheckBox();
             LinkLabelHelpMe = new LinkLabel();
@@ -110,6 +109,7 @@
             // 
             InputChannelNameTwitch.Location = new Point(14, 242);
             InputChannelNameTwitch.Name = "InputChannelNameTwitch";
+            InputChannelNameTwitch.PlaceholderText = "Insert here your Channel Name";
             InputChannelNameTwitch.Size = new Size(288, 31);
             InputChannelNameTwitch.TabIndex = 8;
             // 
@@ -121,6 +121,7 @@
             ButtonSaveClientIdTwitch.TabIndex = 7;
             ButtonSaveClientIdTwitch.Text = "Save";
             ButtonSaveClientIdTwitch.UseVisualStyleBackColor = true;
+            ButtonSaveClientIdTwitch.Visible = false;
             ButtonSaveClientIdTwitch.Click += ButtonSaveClientIdTwitch_Click;
             // 
             // ButtonClientIdTwitch
@@ -146,6 +147,8 @@
             // 
             InputClientIdTwitch.Location = new Point(14, 164);
             InputClientIdTwitch.Name = "InputClientIdTwitch";
+            InputClientIdTwitch.PlaceholderText = "Insert here yout Twitch CliendId";
+            InputClientIdTwitch.ReadOnly = true;
             InputClientIdTwitch.Size = new Size(288, 31);
             InputClientIdTwitch.TabIndex = 4;
             // 
@@ -182,6 +185,7 @@
             // 
             InputTokenTwitch.Location = new Point(14, 80);
             InputTokenTwitch.Name = "InputTokenTwitch";
+            InputTokenTwitch.PlaceholderText = "Insert here yout Twitch token";
             InputTokenTwitch.Size = new Size(288, 31);
             InputTokenTwitch.TabIndex = 0;
             // 
@@ -206,7 +210,6 @@
             // groupBox3
             // 
             groupBox3.Controls.Add(CheckBoxEnabledLogs);
-            groupBox3.Controls.Add(CheckBoxStartApplication);
             groupBox3.Controls.Add(CheckBoxStartMinified);
             groupBox3.Controls.Add(CheckBoxStartWithWindows);
             groupBox3.Location = new Point(19, 358);
@@ -219,7 +222,7 @@
             // CheckBoxEnabledLogs
             // 
             CheckBoxEnabledLogs.AutoSize = true;
-            CheckBoxEnabledLogs.Location = new Point(689, 54);
+            CheckBoxEnabledLogs.Location = new Point(480, 58);
             CheckBoxEnabledLogs.Name = "CheckBoxEnabledLogs";
             CheckBoxEnabledLogs.Size = new Size(260, 29);
             CheckBoxEnabledLogs.TabIndex = 6;
@@ -227,21 +230,10 @@
             CheckBoxEnabledLogs.UseVisualStyleBackColor = true;
             CheckBoxEnabledLogs.CheckedChanged += CheckBoxEnabledLogs_CheckedChanged;
             // 
-            // CheckBoxStartApplication
-            // 
-            CheckBoxStartApplication.AutoSize = true;
-            CheckBoxStartApplication.Location = new Point(16, 54);
-            CheckBoxStartApplication.Name = "CheckBoxStartApplication";
-            CheckBoxStartApplication.Size = new Size(166, 29);
-            CheckBoxStartApplication.TabIndex = 5;
-            CheckBoxStartApplication.Text = "Start application";
-            CheckBoxStartApplication.UseVisualStyleBackColor = true;
-            CheckBoxStartApplication.CheckedChanged += CheckBoxStartApplication_CheckedChanged;
-            // 
             // CheckBoxStartMinified
             // 
             CheckBoxStartMinified.AutoSize = true;
-            CheckBoxStartMinified.Location = new Point(233, 54);
+            CheckBoxStartMinified.Location = new Point(24, 58);
             CheckBoxStartMinified.Name = "CheckBoxStartMinified";
             CheckBoxStartMinified.Size = new Size(163, 29);
             CheckBoxStartMinified.TabIndex = 4;
@@ -252,7 +244,7 @@
             // CheckBoxStartWithWindows
             // 
             CheckBoxStartWithWindows.AutoSize = true;
-            CheckBoxStartWithWindows.Location = new Point(447, 54);
+            CheckBoxStartWithWindows.Location = new Point(238, 58);
             CheckBoxStartWithWindows.Name = "CheckBoxStartWithWindows";
             CheckBoxStartWithWindows.Size = new Size(191, 29);
             CheckBoxStartWithWindows.TabIndex = 3;
@@ -315,7 +307,6 @@
         private GroupBox groupBox3;
         private CheckBox CheckBoxStartWithWindows;
         private LinkLabel LinkLabelSettings;
-        private CheckBox CheckBoxStartApplication;
         private CheckBox CheckBoxStartMinified;
         private LinkLabel LinkLabelHelpMe;
         private CheckBox CheckBoxEnabledLogs;

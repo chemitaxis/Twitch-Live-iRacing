@@ -37,7 +37,7 @@ namespace Twitch_Live_iRacing {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("gp762nuuoqcoxypju8c569th9wz7q5")]
         public string TwitchClientId {
             get {
                 return ((string)(this["TwitchClientId"]));
@@ -56,18 +56,6 @@ namespace Twitch_Live_iRacing {
             }
             set {
                 this["TwitchChannelName"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool StartApplication {
-            get {
-                return ((bool)(this["StartApplication"]));
-            }
-            set {
-                this["StartApplication"] = value;
             }
         }
         
@@ -104,6 +92,18 @@ namespace Twitch_Live_iRacing {
             }
             set {
                 this["EnableLogs"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string BroadcasterId {
+            get {
+                return ((string)(this["BroadcasterId"]));
+            }
+            set {
+                this["BroadcasterId"] = value;
             }
         }
     }

@@ -51,19 +51,19 @@ namespace Twitch_Live_iRacing.Services.Twitch
                 broadcasterId = await FetchAndStoreBroadcasterId(token, clientId);
             }
             // Format the new title using the SdkData properties
-            var newTitle = $"{data.SerieName} - {data.TrackName} - {data.SessionType}";
+            var newTitle = $"[{data.SessionType} - SOF: {data.StrengthOfField}] {data.SerieName} - {data.TrackName}";
 
             // Update the channel's title
-            await UpdateChannelTitle(token, channelName, broadcasterId, newTitle);
+            await UpdateChannelTitle(token, channelName, broadcasterId, newTitle, clientId);
         }
 
-        private async Task UpdateChannelTitle(string token, string channelName, string broadcasterId, string newTitle)
+        private async Task UpdateChannelTitle(string token, string channelName, string broadcasterId, string newTitle, string clientId)
         {
 
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
-                client.DefaultRequestHeaders.Add("Client-Id", "YourClientId");
+                client.DefaultRequestHeaders.Add("Client-Id", clientId);
 
                 var content = new StringContent(JsonConvert.SerializeObject(new { title = newTitle }), Encoding.UTF8, "application/json");
                 var response = await client.PatchAsync($"https://api.twitch.tv/helix/channels?broadcaster_id={broadcasterId}", content);
