@@ -58,5 +58,53 @@ namespace Twitch_Live_iRacing {
                 this["TwitchChannelName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool StartApplication {
+            get {
+                return ((bool)(this["StartApplication"]));
+            }
+            set {
+                this["StartApplication"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool StartMinified {
+            get {
+                return ((bool)(this["StartMinified"]));
+            }
+            set {
+                this["StartMinified"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool StartWithWindows {
+            get {
+                return ((bool)(this["StartWithWindows"]));
+            }
+            set {
+                this["StartWithWindows"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool EnableLogs {
+            get {
+                return ((bool)(this["EnableLogs"]));
+            }
+            set {
+                this["EnableLogs"] = value;
+            }
+        }
     }
 }

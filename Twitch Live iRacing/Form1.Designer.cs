@@ -49,6 +49,7 @@
             CheckBoxStartMinified = new CheckBox();
             CheckBoxStartWithWindows = new CheckBox();
             LinkLabelHelpMe = new LinkLabel();
+            CheckBoxEnabledLogs = new CheckBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -94,6 +95,7 @@
             ButtonSaveChannelName.TabIndex = 11;
             ButtonSaveChannelName.Text = "Save";
             ButtonSaveChannelName.UseVisualStyleBackColor = true;
+            ButtonSaveChannelName.Click += ButtonSaveChannelName_Click;
             // 
             // label3
             // 
@@ -119,6 +121,7 @@
             ButtonSaveClientIdTwitch.TabIndex = 7;
             ButtonSaveClientIdTwitch.Text = "Save";
             ButtonSaveClientIdTwitch.UseVisualStyleBackColor = true;
+            ButtonSaveClientIdTwitch.Click += ButtonSaveClientIdTwitch_Click;
             // 
             // ButtonClientIdTwitch
             // 
@@ -128,6 +131,7 @@
             ButtonClientIdTwitch.TabIndex = 6;
             ButtonClientIdTwitch.Text = "Show";
             ButtonClientIdTwitch.UseVisualStyleBackColor = true;
+            ButtonClientIdTwitch.Click += ButtonClientIdTwitch_Click;
             // 
             // label2
             // 
@@ -153,6 +157,7 @@
             ButtonSaveTokenTwitch.TabIndex = 3;
             ButtonSaveTokenTwitch.Text = "Save";
             ButtonSaveTokenTwitch.UseVisualStyleBackColor = true;
+            ButtonSaveTokenTwitch.Click += ButtonSaveTokenTwitch_Click;
             // 
             // ButtonShowTokenTwitch
             // 
@@ -162,6 +167,7 @@
             ButtonShowTokenTwitch.TabIndex = 2;
             ButtonShowTokenTwitch.Text = "Show";
             ButtonShowTokenTwitch.UseVisualStyleBackColor = true;
+            ButtonShowTokenTwitch.Click += ButtonShowTokenTwitch_Click;
             // 
             // label1
             // 
@@ -199,6 +205,7 @@
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(CheckBoxEnabledLogs);
             groupBox3.Controls.Add(CheckBoxStartApplication);
             groupBox3.Controls.Add(CheckBoxStartMinified);
             groupBox3.Controls.Add(CheckBoxStartWithWindows);
@@ -218,26 +225,29 @@
             CheckBoxStartApplication.TabIndex = 5;
             CheckBoxStartApplication.Text = "Start application";
             CheckBoxStartApplication.UseVisualStyleBackColor = true;
+            CheckBoxStartApplication.CheckedChanged += CheckBoxStartApplication_CheckedChanged;
             // 
             // CheckBoxStartMinified
             // 
             CheckBoxStartMinified.AutoSize = true;
-            CheckBoxStartMinified.Location = new Point(238, 54);
+            CheckBoxStartMinified.Location = new Point(233, 54);
             CheckBoxStartMinified.Name = "CheckBoxStartMinified";
             CheckBoxStartMinified.Size = new Size(163, 29);
             CheckBoxStartMinified.TabIndex = 4;
             CheckBoxStartMinified.Text = "Start minimified";
             CheckBoxStartMinified.UseVisualStyleBackColor = true;
+            CheckBoxStartMinified.CheckedChanged += CheckBoxStartMinified_CheckedChanged;
             // 
             // CheckBoxStartWithWindows
             // 
             CheckBoxStartWithWindows.AutoSize = true;
-            CheckBoxStartWithWindows.Location = new Point(457, 54);
+            CheckBoxStartWithWindows.Location = new Point(447, 54);
             CheckBoxStartWithWindows.Name = "CheckBoxStartWithWindows";
             CheckBoxStartWithWindows.Size = new Size(191, 29);
             CheckBoxStartWithWindows.TabIndex = 3;
             CheckBoxStartWithWindows.Text = "Start with Windows";
             CheckBoxStartWithWindows.UseVisualStyleBackColor = true;
+            CheckBoxStartWithWindows.CheckedChanged += CheckBoxStartWithWindows_CheckedChanged;
             // 
             // LinkLabelHelpMe
             // 
@@ -249,6 +259,17 @@
             LinkLabelHelpMe.TabStop = true;
             LinkLabelHelpMe.Text = "If you like my work, you can help me in Twitch subscribing to my channel";
             LinkLabelHelpMe.LinkClicked += LinkLabelHelpMe_LinkClicked_1;
+            // 
+            // CheckBoxEnabledLogs
+            // 
+            CheckBoxEnabledLogs.AutoSize = true;
+            CheckBoxEnabledLogs.Location = new Point(689, 54);
+            CheckBoxEnabledLogs.Name = "CheckBoxEnabledLogs";
+            CheckBoxEnabledLogs.Size = new Size(260, 29);
+            CheckBoxEnabledLogs.TabIndex = 6;
+            CheckBoxEnabledLogs.Text = "Enable logs (recommended)";
+            CheckBoxEnabledLogs.UseVisualStyleBackColor = true;
+            CheckBoxEnabledLogs.CheckedChanged += CheckBoxEnabledLogs_CheckedChanged;
             // 
             // Form1
             // 
@@ -297,5 +318,6 @@
         private CheckBox CheckBoxStartApplication;
         private CheckBox CheckBoxStartMinified;
         private LinkLabel LinkLabelHelpMe;
+        private CheckBox CheckBoxEnabledLogs;
     }
 }

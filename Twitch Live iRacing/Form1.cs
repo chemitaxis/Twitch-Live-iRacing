@@ -106,5 +106,50 @@ namespace Twitch_Live_iRacing
             };
             Process.Start(psi2);
         }
+
+        private void CheckBoxEnabledLogs_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CheckBoxStartWithWindows_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CheckBoxStartMinified_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CheckBoxStartApplication_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonSaveChannelName_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonClientIdTwitch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonSaveClientIdTwitch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonShowTokenTwitch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonSaveTokenTwitch_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
