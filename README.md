@@ -19,6 +19,8 @@ This Windows Form app, built using .NET 8.0, is tailored for Twitch streamers fo
 
 ### Installation
 
+![Screenshot 2023-12-17 195813](https://github.com/chemitaxis/Twitch-Live-iRacing/assets/1420409/983212d3-0e49-4b35-8ac6-f4f5a6d57a75)
+
 1. Download the latest release from the [GitHub releases page](#).
 2. Unzip the downloaded file to your desired location.
 3. Execute the application file to start.
@@ -40,6 +42,7 @@ First-time users will be prompted to set up:
 4. **Generate and Use the Token**: Follow the on-site instructions to generate your token. Use this in the application settings for API interaction.
 
 **Note**: The client ID corresponds to the Twitch Token Generator application and should not be changed unless you're well-versed with the application's code.
+
 
 ## Usage
 
