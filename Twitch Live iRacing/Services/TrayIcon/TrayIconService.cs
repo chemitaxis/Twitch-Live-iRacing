@@ -8,18 +8,14 @@ namespace Twitch_Live_iRacing.Services.TrayIcon
 {
     public class TrayIconService : ITrayIconService
     {
-        private readonly NotifyIcon trayIcon;
+        private readonly NotifyIcon _trayIcon;
         private readonly Form mainForm;
 
-        public TrayIconService(Form mainForm)
+        public TrayIconService(Form mainForm, NotifyIcon notifyIcon)
         {
             this.mainForm = mainForm;
-            trayIcon = new NotifyIcon
-            {
-                Icon = SystemIcons.Application, // Use your application's icon
-                Visible = false
-            };
-            trayIcon.DoubleClick += (sender, args) => RestoreFromTray();
+            _trayIcon = notifyIcon;
+            _trayIcon.DoubleClick += (sender, args) => RestoreFromTray();
         }
 
         public void Initialize()
@@ -31,14 +27,14 @@ namespace Twitch_Live_iRacing.Services.TrayIcon
         {
             mainForm.WindowState = FormWindowState.Minimized;
             mainForm.ShowInTaskbar = false;
-            trayIcon.Visible = true;
+            _trayIcon.Visible = true;
         }
 
         public void RestoreFromTray()
         {
             mainForm.Show();
             mainForm.WindowState = FormWindowState.Normal;
-            trayIcon.Visible = false;
+            _trayIcon.Visible = false;
         }
     }
 }

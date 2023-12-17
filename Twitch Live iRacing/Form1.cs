@@ -15,7 +15,14 @@ namespace Twitch_Live_iRacing
         private ITelemetryWrapperService telemetryWrapperService;
         private ITwitchService twitchService;
 
-
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            if (WindowState == FormWindowState.Minimized)
+            {
+                trayIconService.MinimizeToTray();
+            }
+        }
 
         public Form1(ILogService logService, IStorageService storageService, ITelemetryWrapperService telemetryWrapperService, ITwitchService twitchService)
         {
@@ -28,7 +35,8 @@ namespace Twitch_Live_iRacing
 
             InputClientIdTwitch.UseSystemPasswordChar = true;
             InputTokenTwitch.UseSystemPasswordChar = true;
-            trayIconService = new TrayIconService(this);
+            trayIconService = new TrayIconService(this, tryIconLive);
+            trayIconService.Initialize();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -52,10 +60,16 @@ namespace Twitch_Live_iRacing
         {
             CheckBoxEnabledLogs.Checked = storageService.LoadSettingBool("EnableLogs");
             CheckBoxStartWithWindows.Checked = storageService.LoadSettingBool("StartWithWindows");
-            CheckBoxStartMinified.Checked =storageService.LoadSettingBool("StartMinified");
+           
             InputTokenTwitch.Text = storageService.LoadSetting("TwitchToken");
             InputClientIdTwitch.Text = storageService.LoadSetting("TwitchClientId");
             InputChannelNameTwitch.Text = storageService.LoadSetting("TwitchChannelName");
+            var minifiedWithWindows = storageService.LoadSettingBool("StartMinified");
+            CheckBoxStartMinified.Checked = minifiedWithWindows;
+            if (minifiedWithWindows)
+            {
+                trayIconService.MinimizeToTray();
+            }
 
         }
 

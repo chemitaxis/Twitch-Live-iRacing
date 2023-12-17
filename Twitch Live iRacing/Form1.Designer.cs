@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             groupBox1 = new GroupBox();
             LinkLabelSettings = new LinkLabel();
@@ -49,6 +50,7 @@
             CheckBoxStartMinified = new CheckBox();
             CheckBoxStartWithWindows = new CheckBox();
             LinkLabelHelpMe = new LinkLabel();
+            tryIconLive = new NotifyIcon(components);
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -263,6 +265,11 @@
             LinkLabelHelpMe.Text = "If you like my work, you can help me in Twitch subscribing to my channel";
             LinkLabelHelpMe.LinkClicked += LinkLabelHelpMe_LinkClicked_1;
             // 
+            // tryIconLive
+            // 
+            tryIconLive.Icon = (Icon)resources.GetObject("tryIconLive.Icon");
+            tryIconLive.Text = "notifyIcon1";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -310,5 +317,6 @@
         private CheckBox CheckBoxStartMinified;
         private LinkLabel LinkLabelHelpMe;
         private CheckBox CheckBoxEnabledLogs;
+        private NotifyIcon tryIconLive;
     }
 }
