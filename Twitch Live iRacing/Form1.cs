@@ -24,6 +24,12 @@ namespace Twitch_Live_iRacing
             }
         }
 
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+            Application.Exit();
+        }
+
         public Form1(ILogService logService, IStorageService storageService, ITelemetryWrapperService telemetryWrapperService, ITwitchService twitchService)
         {
             InitializeComponent();
@@ -121,7 +127,7 @@ namespace Twitch_Live_iRacing
 
         }
 
-
+       
 
         private void LinkLabelHelpMe_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
