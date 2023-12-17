@@ -45,11 +45,11 @@
             groupBox2 = new GroupBox();
             InputLogs = new TextBox();
             groupBox3 = new GroupBox();
+            CheckBoxEnabledLogs = new CheckBox();
             CheckBoxStartApplication = new CheckBox();
             CheckBoxStartMinified = new CheckBox();
             CheckBoxStartWithWindows = new CheckBox();
             LinkLabelHelpMe = new LinkLabel();
-            CheckBoxEnabledLogs = new CheckBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -216,6 +216,17 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "App Settings";
             // 
+            // CheckBoxEnabledLogs
+            // 
+            CheckBoxEnabledLogs.AutoSize = true;
+            CheckBoxEnabledLogs.Location = new Point(689, 54);
+            CheckBoxEnabledLogs.Name = "CheckBoxEnabledLogs";
+            CheckBoxEnabledLogs.Size = new Size(260, 29);
+            CheckBoxEnabledLogs.TabIndex = 6;
+            CheckBoxEnabledLogs.Text = "Enable logs (recommended)";
+            CheckBoxEnabledLogs.UseVisualStyleBackColor = true;
+            CheckBoxEnabledLogs.CheckedChanged += CheckBoxEnabledLogs_CheckedChanged;
+            // 
             // CheckBoxStartApplication
             // 
             CheckBoxStartApplication.AutoSize = true;
@@ -259,17 +270,6 @@
             LinkLabelHelpMe.TabStop = true;
             LinkLabelHelpMe.Text = "If you like my work, you can help me in Twitch subscribing to my channel";
             LinkLabelHelpMe.LinkClicked += LinkLabelHelpMe_LinkClicked_1;
-            // 
-            // CheckBoxEnabledLogs
-            // 
-            CheckBoxEnabledLogs.AutoSize = true;
-            CheckBoxEnabledLogs.Location = new Point(689, 54);
-            CheckBoxEnabledLogs.Name = "CheckBoxEnabledLogs";
-            CheckBoxEnabledLogs.Size = new Size(260, 29);
-            CheckBoxEnabledLogs.TabIndex = 6;
-            CheckBoxEnabledLogs.Text = "Enable logs (recommended)";
-            CheckBoxEnabledLogs.UseVisualStyleBackColor = true;
-            CheckBoxEnabledLogs.CheckedChanged += CheckBoxEnabledLogs_CheckedChanged;
             // 
             // Form1
             // 
