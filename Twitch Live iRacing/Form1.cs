@@ -26,6 +26,8 @@ namespace Twitch_Live_iRacing
             this.telemetryWrapperService = telemetryWrapperService;
             this.twitchService = twitchService;
 
+            InputClientIdTwitch.UseSystemPasswordChar = true;
+            InputTokenTwitch.UseSystemPasswordChar = true;
 
 
             trayIconService = new TrayIconService(this);
@@ -81,6 +83,12 @@ namespace Twitch_Live_iRacing
             // Update the log text box
             Debug.WriteLine(e.message);
 
+            InputLogs.AppendText(e.message + Environment.NewLine);
+
+            // Optionally, scroll to the bottom of the TextBox
+            InputLogs.SelectionStart = InputLogs.Text.Length;
+            InputLogs.ScrollToCaret();
+
         }
 
 
@@ -109,47 +117,83 @@ namespace Twitch_Live_iRacing
 
         private void CheckBoxEnabledLogs_CheckedChanged(object sender, EventArgs e)
         {
-
+            storageService.SaveSetting("EnableLogs", CheckBoxEnabledLogs.Checked);
         }
 
         private void CheckBoxStartWithWindows_CheckedChanged(object sender, EventArgs e)
         {
-
+            storageService.SaveSetting("StartWithWindows", CheckBoxStartWithWindows.Checked);
         }
 
         private void CheckBoxStartMinified_CheckedChanged(object sender, EventArgs e)
         {
-
+            storageService.SaveSetting("StartMinified", CheckBoxStartMinified.Checked);
         }
 
         private void CheckBoxStartApplication_CheckedChanged(object sender, EventArgs e)
         {
-
+            storageService.SaveSetting("StartApplication", CheckBoxStartApplication.Checked);
+            if (CheckBoxStartApplication.Checked)
+            {
+                logService.Log("Application is listening to iRacing changes...");
+            }
+            else { 
+                logService.Log("Application is not listening to iRacing changes..."); 
+            }
         }
 
         private void ButtonSaveChannelName_Click(object sender, EventArgs e)
         {
-
+            storageService.SaveSetting("TwitchChannelName", InputChannelNameTwitch.Text);
         }
 
         private void ButtonClientIdTwitch_Click(object sender, EventArgs e)
         {
+            // SHOW AND HIDE
+            
 
+            // Check if the password characters are currently hidden
+            if (InputClientIdTwitch.UseSystemPasswordChar)
+            {
+                // Show the characters
+                InputClientIdTwitch.UseSystemPasswordChar = false;
+                ButtonClientIdTwitch.Text = "Hide";
+            }
+            else
+            {
+                // Hide the characters
+                InputClientIdTwitch.UseSystemPasswordChar = true;
+                ButtonClientIdTwitch.Text = "Show";
+            }
         }
 
         private void ButtonSaveClientIdTwitch_Click(object sender, EventArgs e)
         {
-
+            storageService.SaveSetting("TwitchClientId", InputClientIdTwitch.Text);
         }
 
         private void ButtonShowTokenTwitch_Click(object sender, EventArgs e)
         {
+            // SHOW AND HIDE
 
+            // Check if the password characters are currently hidden
+            if (InputTokenTwitch.UseSystemPasswordChar)
+            {
+                // Show the characters
+                InputTokenTwitch.UseSystemPasswordChar = false;
+                ButtonShowTokenTwitch.Text = "Hide";
+            }
+            else
+            {
+                // Hide the characters
+                InputTokenTwitch.UseSystemPasswordChar = true;
+                ButtonShowTokenTwitch.Text = "Show";
+            }
         }
 
         private void ButtonSaveTokenTwitch_Click(object sender, EventArgs e)
         {
-
+            storageService.SaveSetting("TwitchToken", InputTokenTwitch.Text);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Twitch_Live_iRacing
             ApplicationConfiguration.Initialize();
 
             ILogService logService = new LogService();
-            IStorageService storageService = new AppSettingsStorageService();
+            IStorageService storageService = new AppSettingsStorageService(logService);
             ISeriesConversor seriesConversor = new SeriesConversor();
             ITelemetryWrapperService telemtryWrapperService = new TelemetryWrapperService(logService, seriesConversor);
             ITwitchService twitchService = new TwitchService(logService, storageService, telemtryWrapperService);
